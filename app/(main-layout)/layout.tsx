@@ -20,9 +20,6 @@ export default async function Layout({
       <main className="flex min-h-0 flex-1 flex-col">
         <SidebarTrigger className="size-10 shrink-0 cursor-pointer hover:shadow-none" />
         {children}
-
-        {/* <div className="mx-auto flex min-h-0 w-full flex-1 flex-col px-6 py-4 sm:w-[80vw]">
-        </div> */}
       </main>
     </SidebarProvider>
   )
