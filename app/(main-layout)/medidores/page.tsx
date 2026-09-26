@@ -5,6 +5,7 @@ import { MetersResponse } from "./types/meters.types"
 import { meterColumns } from "./ui/components/meter-columns"
 import { MetersFilters } from "./ui/components/meters-filters"
 import { GeneralInfoMeterCards } from "./ui/components/general-info-meter-cards"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export const metadata: Metadata = {
   title: "Gestión de medidores",
@@ -68,13 +69,23 @@ export default async function Page({
       />
 
       <div className="flex w-full flex-col gap-4">
-        <Suspense
-          fallback={<div className="h-16 animate-pulse rounded-lg bg-muted" />}
-        >
-          <MetersFilters />
-        </Suspense>
-
-        <DataTable columns={meterColumns} data={data.meters} />
+        <Card className="rounded-lg border border-accent/90 bg-[#0B1120]">
+          <CardHeader>
+            <CardTitle className="border-b pb-3 text-lg font-bold">
+              Lista de medidores
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Suspense
+              fallback={
+                <div className="h-16 animate-pulse rounded-lg bg-muted" />
+              }
+            >
+              <MetersFilters />
+              <DataTable columns={meterColumns} data={data.meters} />
+            </Suspense>
+          </CardContent>
+        </Card>
       </div>
     </div>
   )

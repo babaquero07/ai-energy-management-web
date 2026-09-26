@@ -60,7 +60,7 @@ export const meterColumns = columnHelper.columns([
             <span className="sr-only">Abrir menú</span>
             <MoreHorizontal className="h-4 w-4" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-45">
+          <DropdownMenuContent align="end" className="w-45 bg-[#0B1120]">
             <DropdownMenuGroup>
               <DropdownMenuLabel>Acciones</DropdownMenuLabel>
               <DropdownMenuItem

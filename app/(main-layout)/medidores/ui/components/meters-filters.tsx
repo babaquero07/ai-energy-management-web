@@ -70,7 +70,7 @@ export function MetersFilters() {
   }
 
   return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+    <div className="my-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <div className="flex max-w-xs min-w-0 flex-1 flex-col gap-1.5">
         <label htmlFor="meter_id" className="text-sm font-medium">
           Buscar por ID

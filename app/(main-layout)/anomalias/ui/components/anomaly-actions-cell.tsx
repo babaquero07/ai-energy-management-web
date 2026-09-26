@@ -28,19 +28,19 @@ export function AnomalyActionsCell({ anomaly }: { anomaly: Anomaly }) {
           <span className="sr-only">Abrir menú</span>
           <MoreHorizontal className="h-4 w-4" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-45">
+        <DropdownMenuContent align="end" className="w-45 bg-[#0B1120]">
           <DropdownMenuGroup>
             <DropdownMenuLabel>Acciones</DropdownMenuLabel>
             <DropdownMenuItem
               className="cursor-pointer"
               onClick={() => setDetailOpen(true)}
             >
-              <Eye className="size-3.5" />
+              <Eye className="mr-2 size-3.5" />
               Ver detalle
             </DropdownMenuItem>
 
             <DropdownMenuItem className="cursor-pointer">
-              <LinkIcon className="size-3.5" />
+              <LinkIcon className="mr-2 size-3.5" />
               <Link href={`/medidores/${anomaly.meter_id}`}>Ver medidor</Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>

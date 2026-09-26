@@ -75,7 +75,7 @@ export function AppSidebar() {
                     className="py-5 hover:bg-[#1E293B] hover:text-violet-200 data-active:bg-[#1E293B] data-active:text-chart-1"
                   >
                     <item.icon />
-                    <span>{item.title}</span>
+                    <span className="text-base font-medium">{item.title}</span>
                   </SidebarMenuButton>
                   {item.badge ? (
                     <SidebarMenuBadge className="mt-1 mr-2 rounded bg-violet-200 px-1.5 text-[10px] font-semibold tracking-wide">
