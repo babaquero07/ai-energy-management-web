@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Eye, MoreHorizontal } from "lucide-react"
+import { Eye, LinkIcon, MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -14,6 +14,7 @@ import {
 import { Anomaly } from "../../types/anomalies-types.type"
 import { DialogAnomalyDetail } from "./dialog-anomaly-detail"
 import AnomalyDetail from "./anomaly-detail"
+import Link from "next/link"
 
 export function AnomalyActionsCell({ anomaly }: { anomaly: Anomaly }) {
   const [detailOpen, setDetailOpen] = useState(false)
@@ -36,6 +37,11 @@ export function AnomalyActionsCell({ anomaly }: { anomaly: Anomaly }) {
             >
               <Eye className="size-3.5" />
               Ver detalle
+            </DropdownMenuItem>
+
+            <DropdownMenuItem className="cursor-pointer">
+              <LinkIcon className="size-3.5" />
+              <Link href={`/medidores/${anomaly.meter_id}`}>Ver medidor</Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>

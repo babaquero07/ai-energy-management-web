@@ -7,6 +7,9 @@ import { MeterGeneralDetails } from "./ui/components/meter-general-details"
 import { MeterDetailsCards } from "./ui/components/meter-details-cards"
 import { DataTable } from "@/components/shared/data-table"
 import { meterDetailColumns } from "./ui/components/meter-detail-columns"
+import { MeterDemandChart } from "./ui/components/meter-demand-chart"
+import { Card, CardHeader } from "@/components/ui/card"
+import { FileText } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Detalle Medidor",
@@ -36,57 +39,58 @@ export default async function MeterPage({ params }: MeterPageProps) {
   }
 
   return (
-    <div className="flex flex-col gap-4 p-8">
-      <div className="flex flex-col gap-6">
-        <div className="flex items-center gap-2">
-          <h1 className="text-3xl font-bold">
-            Detalle de medidor - {res.data.name}
-          </h1>
-          <Badge
-            variant="outline"
+    <div className="flex flex-col gap-8 p-8">
+      <div className="flex items-center gap-2">
+        <h1 className="text-3xl font-bold">
+          Detalle de medidor - {res.data.name}
+        </h1>
+        <Badge
+          variant="outline"
+          className={cn(
+            "rounded-xs p-3.5 text-sm",
+            res.data.status === "Activo"
+              ? "bg-emerald-500/10 text-emerald-500"
+              : "bg-red-500/10 text-red-500",
+            res.data.status === "Mantenimiento"
+              ? "bg-yellow-500/10 text-yellow-500"
+              : ""
+          )}
+        >
+          {res.data.meter_id}
+        </Badge>
+        <Badge
+          variant="outline"
+          className={cn(
+            "rounded-xl p-3",
+            res.data.status === "Activo"
+              ? "bg-emerald-500/10 text-emerald-500"
+              : "bg-red-500/10 text-red-500",
+            res.data.status === "Mantenimiento"
+              ? "bg-yellow-500/10 text-yellow-500"
+              : ""
+          )}
+        >
+          <span
             className={cn(
-              "rounded-xs p-3.5 text-sm",
-              res.data.status === "Activo"
-                ? "bg-emerald-500/10 text-emerald-500"
-                : "bg-red-500/10 text-red-500",
-              res.data.status === "Mantenimiento"
-                ? "bg-yellow-500/10 text-yellow-500"
-                : ""
+              "size-2 animate-pulse rounded-full",
+              res.data.status === "Activo" ? "bg-emerald-500" : "bg-red-500",
+              res.data.status === "Mantenimiento" ? "bg-yellow-500" : ""
             )}
-          >
-            {res.data.meter_id}
-          </Badge>
-          <Badge
-            variant="outline"
-            className={cn(
-              "rounded-xl p-3",
-              res.data.status === "Activo"
-                ? "bg-emerald-500/10 text-emerald-500"
-                : "bg-red-500/10 text-red-500",
-              res.data.status === "Mantenimiento"
-                ? "bg-yellow-500/10 text-yellow-500"
-                : ""
-            )}
-          >
-            <span
-              className={cn(
-                "size-2 animate-pulse rounded-full",
-                res.data.status === "Activo" ? "bg-emerald-500" : "bg-red-500",
-                res.data.status === "Mantenimiento" ? "bg-yellow-500" : ""
-              )}
-            />
-            {res.data.status}
-          </Badge>
-        </div>
+          />
+          {res.data.status}
+        </Badge>
+      </div>
 
-        <MeterGeneralDetails
-          data={{
-            location: res.data.location,
-            created_at: res.data.created_at,
-            last_reading_date: res.data.current.timestamp,
-          }}
-        />
+      <MeterGeneralDetails
+        data={{
+          location: res.data.location,
+          created_at: res.data.created_at,
+          last_reading_date: res.data.current.timestamp,
+        }}
+      />
 
+      <div className="flex flex-col gap-4 rounded-lg bg-[#0B1120] p-4">
+        <h2 className="text-2xl font-bold">Datos de la última lectura</h2>
         <MeterDetailsCards
           data={{
             consumption: res.data.current.consumption,
@@ -98,11 +102,19 @@ export default async function MeterPage({ params }: MeterPageProps) {
               +res.data.analysis.variationPercent.toFixed(2),
           }}
         />
+      </div>
 
-        <div className="mt-8 flex flex-col gap-4">
+      <MeterDemandChart
+        history={res.data.history}
+        baseline={res.data.analysis.baseline}
+      />
+
+      <div className="flex flex-col gap-4 rounded-lg bg-[#0B1120] p-4">
+        <div className="flex items-center gap-2">
+          <FileText className="size-4.5 text-violet-200" />
           <h2 className="text-2xl font-bold">Historial de lecturas</h2>
-          <DataTable columns={meterDetailColumns} data={res.data.history} />
         </div>
+        <DataTable columns={meterDetailColumns} data={res.data.history} />
       </div>
     </div>
   )
