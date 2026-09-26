@@ -1,8 +1,16 @@
 "use client"
 
 import { useEffect } from "react"
-import { useQuery } from "@tanstack/react-query"
-import { AlertTriangle, Check, Clock, Info, Sparkles, X } from "lucide-react"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import {
+  AlertTriangle,
+  Check,
+  Clock,
+  Info,
+  Loader2,
+  Sparkles,
+  X,
+} from "lucide-react"
 import {
   AnomalyDetailResponse,
   AnomalyStatus,
@@ -42,6 +50,7 @@ function formatSegmentDate(value: Date | string) {
 }
 
 export default function AnomalyDetail({ anomaly_id }: AnomalyDetailProps) {
+  const queryClient = useQueryClient()
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["anomaly-detail", anomaly_id],
     queryFn: async () => {
@@ -51,12 +60,60 @@ export default function AnomalyDetail({ anomaly_id }: AnomalyDetailProps) {
       if (!res.ok) {
         throw new Error("No se pudo obtener el detalle de la anomalía")
       }
+
       return (await res.json()) as AnomalyDetailResponse
+    },
+  })
+
+  const updateAnomalyMutation = useMutation<
+    { success: boolean; message: string },
+    Error,
+    number
+  >({
+    mutationKey: ["update-anomaly", anomaly_id],
+    mutationFn: async (anomaly_id: number) => {
+      const res = await fetch(
+        `http://localhost:3000/api/ai/analysis/${anomaly_id}`,
+        {
+          method: "PATCH",
+        }
+      )
+
+      if (!res.ok) {
+        throw new Error("No se pudo actualizar la anomalía")
+      }
+
+      return (await res.json()) as { success: boolean; message: string }
+    },
+    onSuccess: (data) => {
+      if (data.success) {
+        toast.add({
+          type: "success",
+          title: "Anomalía actualizada",
+        })
+      }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["anomaly-detail", anomaly_id],
+      })
+    },
+    onError: (error) => {
+      console.error(error)
+
+      toast.add({
+        type: "error",
+        title: "Error al actualizar la anomalía",
+        description:
+          "Inténtalo de nuevo. Si el problema persiste, contacta al soporte.",
+        timeout: 5000,
+      })
     },
   })
 
   useEffect(() => {
     if (!isError) return
+
     toast.add({
       type: "warning",
       title: "Error al obtener el detalle de la anomalía",
@@ -208,9 +265,22 @@ export default function AnomalyDetail({ anomaly_id }: AnomalyDetailProps) {
           Cerrar
         </DialogClose>
         {showAiButton && (
-          <Button className="cursor-pointer bg-[#10B981] font-semibold text-[#0F172A] hover:bg-emerald-500">
-            <Sparkles className="size-4" />
-            Analizar datos con IA
+          <Button
+            onClick={() => updateAnomalyMutation.mutate(anomaly_id)}
+            disabled={updateAnomalyMutation.isPending}
+            className={cn(
+              "cursor-pointer bg-[#10B981] font-semibold text-[#0F172A] hover:bg-emerald-500",
+              updateAnomalyMutation.isPending && "text-white"
+            )}
+          >
+            {updateAnomalyMutation.isPending ? (
+              <Loader2 className="size-4 animate-spin text-white" />
+            ) : (
+              <Sparkles className="size-4" />
+            )}
+            {updateAnomalyMutation.isPending
+              ? "Analizando..."
+              : "Analizar datos con IA"}
           </Button>
         )}
       </div>
