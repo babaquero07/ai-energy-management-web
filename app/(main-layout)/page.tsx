@@ -44,7 +44,7 @@ export default async function Page() {
       </div>
 
       <Card className="rounded-lg border border-yellow-500/30 bg-yellow-500/5 py-6 shadow-none">
-        <CardContent className="flex items-center gap-2">
+        <CardContent className="flex items-center gap-4">
           <div className="flex size-12 items-center justify-center rounded-lg bg-yellow-500/10">
             <Brain className="size-5.5 text-yellow-500" />
           </div>
@@ -54,17 +54,17 @@ export default async function Page() {
               <div className="flex items-center gap-2">
                 <Badge
                   variant="secondary"
-                  className="rounded-sm border border-yellow-400/30 bg-yellow-400/15 p-4 text-yellow-400"
+                  className="rounded-sm border border-yellow-400/30 bg-yellow-400/15 p-3 text-yellow-400"
                 >
                   DETECTED
                 </Badge>
-                <span className="text-base text-muted-foreground">
+                <span className="text-muted-foreground">
                   último análisis:{" "}
                   {new Date(data.lastAnalysisAt).toLocaleString()}
                 </span>
               </div>
 
-              <p className="text-md font-medium text-white">
+              <p className="text-lg text-white">
                 Se identificaron{" "}
                 <span className="text-yellow-400">
                   {data.anomalies} anomalías

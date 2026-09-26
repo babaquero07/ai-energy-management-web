@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { CalendarIcon, FilterXIcon, Search } from "lucide-react"
+import {
+  CalendarIcon,
+  ChevronDownIcon,
+  FilterXIcon,
+  Search,
+} from "lucide-react"
 
 import { Input } from "@/components/ui/input"
 import {
@@ -15,8 +20,14 @@ import {
 import { Status } from "../../types/meters.types"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { es } from "date-fns/locale"
 
-const STATUS_ALL = "all"
+const STATUS_ALL = "Todos"
 
 export function MetersFilters() {
   const router = useRouter()
@@ -105,7 +116,7 @@ export function MetersFilters() {
             <SelectTrigger id="status" className="w-full">
               <SelectValue placeholder="Todos" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-[#0B1120]">
               <SelectItem value={STATUS_ALL}>Todos</SelectItem>
               {Object.values(Status).map((status) => (
                 <SelectItem key={status} value={status}>
@@ -120,14 +131,44 @@ export function MetersFilters() {
           <label htmlFor="date" className="text-sm font-medium">
             Fecha
           </label>
-          <Input
-            id="date"
-            type="date"
-            value={dateParam}
-            onChange={(event) => {
-              updateParams({ date: event.target.value || null })
-            }}
-          />
+          <Popover>
+            <PopoverTrigger
+              render={
+                <Button
+                  variant={"outline"}
+                  data-empty={!dateParam}
+                  className="w-45 justify-between text-left font-normal data-[empty=true]:text-muted-foreground"
+                >
+                  {" "}
+                  {dateParam ? (
+                    new Date(dateParam).toLocaleDateString("es-CO", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })
+                  ) : (
+                    <span>Seleccionar fecha</span>
+                  )}
+                  <ChevronDownIcon data-icon="inline-end" />
+                </Button>
+              }
+            />
+            <PopoverContent className="w-auto bg-[#0B1120] p-0" align="start">
+              <Calendar
+                id="date"
+                mode="single"
+                selected={dateParam ? new Date(dateParam) : undefined}
+                onSelect={(e) =>
+                  // must be yyyy-mm-dd
+                  updateParams({
+                    date: e ? new Date(e).toISOString().split("T")[0] : null,
+                  })
+                }
+                defaultMonth={dateParam ? new Date(dateParam) : undefined}
+                locale={es}
+              />
+            </PopoverContent>
+          </Popover>
         </div>
 
         <Button
