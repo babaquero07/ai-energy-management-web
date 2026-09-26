@@ -1,7 +1,7 @@
 "use client"
 
 import { DataTableFeatures } from "@/components/shared/data-table-features"
-import { Current, MeterDetail } from "../../types/meter-detail.types"
+import { Current } from "../../types/meter-detail.types"
 import { createColumnHelper } from "@tanstack/react-table"
 import { Button } from "@/components/ui/button"
 import { ArrowUpDown } from "lucide-react"
