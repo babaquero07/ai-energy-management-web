@@ -1,6 +1,11 @@
 export interface MetersResponse {
-  data: Meter[];
-  total: number;
+  data: {
+    meters: Meter[];
+    actives: number;
+    inactives: number;
+    maintenances: number;
+    total: number;
+  };
 }
 
 export interface Meter {

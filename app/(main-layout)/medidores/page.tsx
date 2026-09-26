@@ -5,6 +5,11 @@ import { DataTable } from "@/components/shared/data-table"
 import { MetersResponse } from "./types/meters.types"
 import { meterColumns } from "./ui/components/meter-columns"
 import { MetersFilters } from "./ui/components/meters-filters"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+
+import { cn } from "@/lib/utils"
+import { Gauge } from "lucide-react"
+import { GeneralInfoMeterCards } from "./ui/components/general-info-meter-cards"
 
 export const metadata: Metadata = {
   title: "Gestión de medidores",
@@ -41,7 +46,14 @@ export default async function Page({
       return null
     })
 
-  const data = response?.data ?? []
+  const data = response?.data ?? {
+    meters: [],
+    actives: 0,
+    inactives: 0,
+    maintenances: 0,
+    total: 0,
+  }
+  console.log("🚀 ~ Page ~ data:", data)
 
   return (
     <div className="flex flex-col gap-8 p-8">
@@ -52,12 +64,23 @@ export default async function Page({
         </p>
       </div>
 
+      <GeneralInfoMeterCards
+        data={{
+          actives: data.actives,
+          inactives: data.inactives,
+          maintenances: data.maintenances,
+          total: data.total,
+        }}
+      />
+
       <div className="flex w-full flex-col gap-4">
-        <Suspense fallback={<div className="h-16 animate-pulse rounded-lg bg-muted" />}>
+        <Suspense
+          fallback={<div className="h-16 animate-pulse rounded-lg bg-muted" />}
+        >
           <MetersFilters />
         </Suspense>
 
-        <DataTable columns={meterColumns} data={data} />
+        <DataTable columns={meterColumns} data={data.meters} />
       </div>
     </div>
   )
