@@ -1,14 +1,9 @@
 import { Metadata } from "next"
 import { Suspense } from "react"
-
 import { DataTable } from "@/components/shared/data-table"
 import { MetersResponse } from "./types/meters.types"
 import { meterColumns } from "./ui/components/meter-columns"
 import { MetersFilters } from "./ui/components/meters-filters"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-
-import { cn } from "@/lib/utils"
-import { Gauge } from "lucide-react"
 import { GeneralInfoMeterCards } from "./ui/components/general-info-meter-cards"
 
 export const metadata: Metadata = {
@@ -53,7 +48,6 @@ export default async function Page({
     maintenances: 0,
     total: 0,
   }
-  console.log("🚀 ~ Page ~ data:", data)
 
   return (
     <div className="flex flex-col gap-8 p-8">
