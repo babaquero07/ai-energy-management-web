@@ -53,7 +53,7 @@ export function MeterGeneralDetails({ data }: MeterGeneralDetailsProps) {
     <ul className="flex items-center gap-3">
       {items.map(({ icon: Icon, label, value }, index) => (
         <li key={index} className="flex items-center gap-2">
-          <Icon className="size-4 text-emerald-500" />
+          <Icon className="size-4 text-violet-200" />
           <span className="text-muted-foreground">
             {label}: <span className="text-white">{value as string}</span>
           </span>

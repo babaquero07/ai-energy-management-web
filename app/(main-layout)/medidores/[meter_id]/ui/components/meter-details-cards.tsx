@@ -91,7 +91,7 @@ export function MeterDetailsCards({ data }: MeterDetailsCardsProps) {
       {cards.map(
         ({ title, value, valueText, description, icon: Icon }, index) => (
           <li key={index}>
-            <Card className="min-w-65 rounded-lg border border-accent/90 bg-primary/10 transition-all duration-300 hover:scale-105">
+            <Card className="min-w-65 rounded-lg border border-accent/90 bg-[#0B1120] transition-all duration-300 hover:scale-105">
               <CardHeader>
                 <CardTitle className="flex w-full items-center justify-between text-sm text-white uppercase">
                   {title}
