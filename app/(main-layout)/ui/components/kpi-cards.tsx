@@ -34,7 +34,7 @@ export function KpiCards({ data }: DashboardSummaryRes) {
         description: "Nodos conectados",
         icon: Gauge,
         iconColor: "text-muted-foreground",
-        bgColor: "bg-primary/10",
+        bgColor: "bg-[#0B1120]",
         valueColor: "text-white",
       },
       {
@@ -44,7 +44,7 @@ export function KpiCards({ data }: DashboardSummaryRes) {
         description: "kWh periodo activo acumulador",
         icon: Zap,
         iconColor: "text-muted-foreground",
-        bgColor: "bg-primary/10",
+        bgColor: "bg-[#0B1120]",
         valueColor: "text-white",
       },
       {
@@ -54,7 +54,7 @@ export function KpiCards({ data }: DashboardSummaryRes) {
         description: "Eventos registrados",
         icon: AlertCircle,
         iconColor: "text-muted-foreground",
-        bgColor: "bg-primary/10",
+        bgColor: "bg-[#0B1120]",
         valueColor: "text-white",
       },
       {
@@ -74,7 +74,7 @@ export function KpiCards({ data }: DashboardSummaryRes) {
         description: "Nivel de certeza del modelo",
         icon: Astroid,
         iconColor: "text-emerald-500",
-        bgColor: "bg-primary/10",
+        bgColor: "bg-[#0B1120]",
         valueColor: "text-emerald-500",
       },
     ]

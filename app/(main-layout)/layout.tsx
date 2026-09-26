@@ -13,6 +13,7 @@ export default async function Layout({
         {
           "--sidebar-width": "18rem",
           "--sidebar-width-mobile": "20rem",
+          "--sidebar-background": "#0B1120",
         } as React.CSSProperties
       }
     >

@@ -81,7 +81,7 @@ export default async function Page() {
             </div>
 
             <Link
-              href="/anomalies"
+              href="/anomalias"
               className="flex items-center gap-2 font-bold text-yellow-400 transition-all duration-300 hover:text-yellow-400/80"
             >
               Ver diagnóstico <ArrowRight className="size-4 text-yellow-400" />

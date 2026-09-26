@@ -64,7 +64,7 @@ export function GeneralInfoMeterCards({ data }: GeneralInfoMeterCardsProps) {
         <li key={index}>
           <Card
             className={cn(
-              "min-w-55 rounded-lg border border-accent/90 bg-primary/10 transition-all duration-300 hover:scale-105"
+              "min-w-55 rounded-lg border border-accent/90 bg-[#0B1120] transition-all duration-300 hover:scale-105"
             )}
           >
             <CardHeader>
