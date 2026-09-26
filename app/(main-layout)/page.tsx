@@ -5,6 +5,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { KpiCards } from "./ui/components/kpi-cards"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Dashboard de Operaciones",
+  description:
+    "Monitoreo y telemetría de eficiencia energética en tiempo real.",
+}
 
 export default async function Page() {
   const { data }: DashboardSummaryRes = await fetch(
