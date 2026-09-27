@@ -30,10 +30,12 @@ export default async function Page({
   if (status) query.set("status", status)
   if (date) query.set("date", date)
 
+  const API_URL = process.env.API_URL
+
   const queryString = query.toString()
   const url = queryString
-    ? `http://localhost:3000/api/meters?${queryString}`
-    : "http://localhost:3000/api/meters"
+    ? `${API_URL}/meters?${queryString}`
+    : `${API_URL}/meters`
 
   const response: MetersResponse | null = await fetch(url)
     .then((res) => res.json())

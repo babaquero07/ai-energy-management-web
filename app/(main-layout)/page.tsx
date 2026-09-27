@@ -14,8 +14,10 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
+  const API_URL = process.env.API_URL
+
   const { data }: DashboardSummaryRes = await fetch(
-    "http://localhost:3000/api/dashboard/summary"
+    `${API_URL}/dashboard/summary`
   )
     .then((res) => {
       return res.json()

@@ -49,14 +49,14 @@ function formatSegmentDate(value: Date | string) {
   })
 }
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL
+
 export default function AnomalyDetail({ anomaly_id }: AnomalyDetailProps) {
   const queryClient = useQueryClient()
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["anomaly-detail", anomaly_id],
     queryFn: async () => {
-      const res = await fetch(
-        `http://localhost:3000/api/anomalies/${anomaly_id}`
-      )
+      const res = await fetch(`${API_URL}/anomalies/${anomaly_id}`)
       if (!res.ok) {
         throw new Error("No se pudo obtener el detalle de la anomalía")
       }
@@ -65,6 +65,8 @@ export default function AnomalyDetail({ anomaly_id }: AnomalyDetailProps) {
     },
   })
 
+  const AI_URL = process.env.NEXT_PUBLIC_API_URL
+
   const updateAnomalyMutation = useMutation<
     { success: boolean; message: string },
     Error,
@@ -72,12 +74,9 @@ export default function AnomalyDetail({ anomaly_id }: AnomalyDetailProps) {
   >({
     mutationKey: ["update-anomaly", anomaly_id],
     mutationFn: async (anomaly_id: number) => {
-      const res = await fetch(
-        `http://localhost:3000/api/ai/analysis/${anomaly_id}`,
-        {
-          method: "PATCH",
-        }
-      )
+      const res = await fetch(`${AI_URL}/ai/analysis/${anomaly_id}`, {
+        method: "PATCH",
+      })
 
       if (!res.ok) {
         throw new Error("No se pudo actualizar la anomalía")

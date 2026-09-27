@@ -19,10 +19,12 @@ interface AnalyzeMeterResponse {
 export function AnalyzeMeter({ meter_id }: AnalyzeMeterProps) {
   const router = useRouter()
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL
+
   const analyzeDataMutation = useMutation<AnalyzeMeterResponse, Error, string>({
     mutationKey: ["analyze-meter"],
     mutationFn: async (meter_id: string): Promise<AnalyzeMeterResponse> => {
-      const res = await fetch("http://localhost:3000/api/ai/analyze", {
+      const res = await fetch(`${API_URL}/ai/analyze`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

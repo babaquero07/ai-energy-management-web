@@ -26,8 +26,10 @@ interface MeterPageProps {
 export default async function MeterPage({ params }: MeterPageProps) {
   const { meter_id } = await params
 
+  const API_URL = process.env.API_URL
+
   const res: MeterDetailResponse | null = await fetch(
-    `http://localhost:3000/api/meters/${meter_id}`
+    `${API_URL}/meters/${meter_id}`
   )
     .then((res) => res.json())
     .catch((err) => {

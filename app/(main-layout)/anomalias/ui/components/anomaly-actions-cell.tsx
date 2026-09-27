@@ -26,15 +26,14 @@ export function AnomalyActionsCell({ anomaly }: { anomaly: Anomaly }) {
 
   const router = useRouter()
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL
+
   const deleteMutation = useMutation({
     mutationKey: ["delete-anomaly"],
     mutationFn: async () => {
-      const res = await fetch(
-        `http://localhost:3000/api/anomalies/${anomaly.id}`,
-        {
-          method: "DELETE",
-        }
-      )
+      const res = await fetch(`${API_URL}/anomalies/${anomaly.id}`, {
+        method: "DELETE",
+      })
 
       if (!res.ok) {
         throw new Error("Failed to delete anomaly")

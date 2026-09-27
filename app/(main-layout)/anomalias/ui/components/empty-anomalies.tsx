@@ -9,15 +9,14 @@ import { Loader2, Sparkles } from "lucide-react"
 export default function EmptyAnomalies() {
   const queryClient = useQueryClient()
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL
+
   const executeAnalysis = useMutation({
     mutationFn: async () => {
       try {
-        const res = await fetch(
-          "http://localhost:3000/api/ai/analyze/execute",
-          {
-            method: "POST",
-          }
-        )
+        const res = await fetch(`${API_URL}/ai/analyze/execute`, {
+          method: "POST",
+        })
 
         return await res.json()
       } catch (err: any) {

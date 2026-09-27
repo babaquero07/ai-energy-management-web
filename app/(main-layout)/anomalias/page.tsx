@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 }
 
 export default async function AnomaliesPage() {
-  const res: AnomaliesResponse | null = await fetch(
-    `http://localhost:3000/api/anomalies`
-  )
+  const API_URL = process.env.API_URL
+
+  const res: AnomaliesResponse | null = await fetch(`${API_URL}/anomalies`)
     .then((res) => res.json())
     .catch((err) => null)
 
