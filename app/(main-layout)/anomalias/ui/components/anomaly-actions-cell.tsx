@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Eye, LinkIcon, MoreHorizontal } from "lucide-react"
+import { Eye, LinkIcon, MoreHorizontal, Trash } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -15,9 +15,50 @@ import { Anomaly } from "../../types/anomalies-types.type"
 import { DialogAnomalyDetail } from "./dialog-anomaly-detail"
 import AnomalyDetail from "./anomaly-detail"
 import Link from "next/link"
+import { ConfirmDeleteDialog } from "@/components/shared/confirm-dialog"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { toast } from "@/components/ui/toast"
+import { useRouter } from "next/navigation"
 
 export function AnomalyActionsCell({ anomaly }: { anomaly: Anomaly }) {
   const [detailOpen, setDetailOpen] = useState(false)
+  const [deleteOpen, setDeleteOpen] = useState(false)
+
+  const router = useRouter()
+
+  const deleteMutation = useMutation({
+    mutationKey: ["delete-anomaly"],
+    mutationFn: async () => {
+      const res = await fetch(
+        `http://localhost:3000/api/anomalies/${anomaly.id}`,
+        {
+          method: "DELETE",
+        }
+      )
+
+      if (!res.ok) {
+        throw new Error("Failed to delete anomaly")
+      }
+
+      return res.json()
+    },
+    onSuccess: () => {
+      toast.add({
+        title: "Anomalia eliminada",
+        description: "La anomalia ha sido eliminada correctamente",
+        timeout: 5000,
+      })
+
+      router.refresh()
+    },
+    onError: () => {
+      toast.add({
+        title: "Error",
+        description: "Error al eliminar la anomalia",
+        timeout: 5000,
+      })
+    },
+  })
 
   return (
     <>
@@ -43,6 +84,13 @@ export function AnomalyActionsCell({ anomaly }: { anomaly: Anomaly }) {
               <LinkIcon className="mr-2 size-3.5" />
               <Link href={`/medidores/${anomaly.meter_id}`}>Ver medidor</Link>
             </DropdownMenuItem>
+            <DropdownMenuItem
+              className="cursor-pointer bg-red-400/60 focus:bg-red-400/80"
+              onClick={() => setDeleteOpen(true)}
+            >
+              <Trash className="mr-2 size-3.5" />
+              Eliminar
+            </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -50,6 +98,11 @@ export function AnomalyActionsCell({ anomaly }: { anomaly: Anomaly }) {
       <DialogAnomalyDetail open={detailOpen} onOpenChange={setDetailOpen}>
         <AnomalyDetail anomaly_id={anomaly.id} />
       </DialogAnomalyDetail>
+      <ConfirmDeleteDialog
+        open={deleteOpen}
+        onOpenChange={setDeleteOpen}
+        onConfirm={() => deleteMutation.mutate()}
+      />
     </>
   )
 }
