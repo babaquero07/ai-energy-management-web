@@ -10,6 +10,7 @@ import { meterDetailColumns } from "./ui/components/meter-detail-columns"
 import { MeterDemandChart } from "./ui/components/meter-demand-chart"
 import { Card, CardHeader } from "@/components/ui/card"
 import { FileText } from "lucide-react"
+import { AnalyzeMeter } from "./ui/components/analize-meter"
 
 export const metadata: Metadata = {
   title: "Detalle Medidor",
@@ -81,13 +82,17 @@ export default async function MeterPage({ params }: MeterPageProps) {
         </Badge>
       </div>
 
-      <MeterGeneralDetails
-        data={{
-          location: res.data.location,
-          created_at: res.data.created_at,
-          last_reading_date: res.data.current.timestamp,
-        }}
-      />
+      <div className="flex items-center justify-between">
+        <MeterGeneralDetails
+          data={{
+            location: res.data.location,
+            created_at: res.data.created_at,
+            last_reading_date: res.data.current.timestamp,
+          }}
+        />
+
+        <AnalyzeMeter meter_id={meter_id} />
+      </div>
 
       <div className="flex flex-col gap-4 rounded-lg bg-[#0B1120] p-4">
         <h2 className="text-2xl font-bold">Datos de la última lectura</h2>
