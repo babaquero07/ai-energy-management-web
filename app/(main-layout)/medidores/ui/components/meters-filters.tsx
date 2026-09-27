@@ -129,7 +129,7 @@ export function MetersFilters() {
 
         <div className="flex w-full flex-col gap-1.5 sm:w-48">
           <label htmlFor="date" className="text-sm font-medium">
-            Fecha
+            Fecha creación
           </label>
           <Popover>
             <PopoverTrigger
