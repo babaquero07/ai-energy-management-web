@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   description: "Gestión de medidores y dispositivos conectados.",
 }
 
+export const dynamic = "force-dynamic"
+
 type MetersSearchParams = {
   meter_id?: string
   status?: string

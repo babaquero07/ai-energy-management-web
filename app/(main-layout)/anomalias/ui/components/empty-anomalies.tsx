@@ -19,8 +19,9 @@ export default function EmptyAnomalies() {
         })
 
         return await res.json()
-      } catch (err: any) {
-        throw new Error(err.message || "Failed to fetch")
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "Failed to fetch"
+        throw new Error(message)
       }
     },
     onSuccess: (res: { success: boolean }) => {
@@ -40,13 +41,13 @@ export default function EmptyAnomalies() {
 
       window.location.reload()
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       console.error(error)
 
       toast.add({
         type: "warning",
         title: "Error al ejecutar el análisis",
-        description: error?.message || "Por favor, inténtalo de nuevo",
+        description: error.message || "Por favor, inténtalo de nuevo",
       })
     },
   })

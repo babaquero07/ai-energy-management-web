@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   description: "Anomalias detectadas",
 }
 
+export const dynamic = "force-dynamic"
+
 export default async function AnomaliesPage() {
   const API_URL = process.env.API_URL
 

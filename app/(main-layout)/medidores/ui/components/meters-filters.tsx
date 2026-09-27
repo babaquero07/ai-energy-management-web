@@ -39,10 +39,12 @@ export function MetersFilters() {
   const dateParam = searchParams.get("date") ?? ""
 
   const [meterId, setMeterId] = useState(meterIdParam)
+  const [syncedMeterId, setSyncedMeterId] = useState(meterIdParam)
 
-  useEffect(() => {
+  if (meterIdParam !== syncedMeterId) {
+    setSyncedMeterId(meterIdParam)
     setMeterId(meterIdParam)
-  }, [meterIdParam])
+  }
 
   useEffect(() => {
     const next = meterId.trim()

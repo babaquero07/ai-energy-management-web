@@ -16,7 +16,7 @@ import { DialogAnomalyDetail } from "./dialog-anomaly-detail"
 import AnomalyDetail from "./anomaly-detail"
 import Link from "next/link"
 import { ConfirmDeleteDialog } from "@/components/shared/confirm-dialog"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation } from "@tanstack/react-query"
 import { toast } from "@/components/ui/toast"
 import { useRouter } from "next/navigation"
 
