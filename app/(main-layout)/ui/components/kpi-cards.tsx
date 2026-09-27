@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils"
 interface Kpis {
   title: string
   titleColor: string
-  value: number
+  value: number | string
   description: string
   icon: LucideIcon
   iconColor: string
@@ -70,7 +70,7 @@ export function KpiCards({ data }: DashboardSummaryRes) {
       {
         title: "Confianza IA",
         titleColor: "text-muted-foreground",
-        value: data.aiConfidence,
+        value: `${data.aiConfidence} %`,
         description: "Nivel de certeza del modelo",
         icon: Astroid,
         iconColor: "text-emerald-500",
@@ -96,7 +96,7 @@ export function KpiCards({ data }: DashboardSummaryRes) {
           },
           index
         ) => (
-          <li key={index} className="w-full lg:w-[300px]">
+          <li key={index} className="w-full lg:w-75">
             <Card
               className={cn(
                 "min-h-40 rounded-lg border border-accent/90 pt-4 pb-6 transition-all duration-300 hover:scale-105",
