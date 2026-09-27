@@ -44,27 +44,27 @@ export default async function Page() {
       </div>
 
       <Card className="rounded-lg border border-yellow-500/30 bg-yellow-500/5 py-6 shadow-none">
-        <CardContent className="flex items-center gap-4">
-          <div className="flex size-12 items-center justify-center rounded-lg bg-yellow-500/10">
+        <CardContent className="flex flex-col gap-4 sm:flex-row sm:items-center">
+          <div className="mx-auto flex size-12 shrink-0 items-center justify-center rounded-lg bg-yellow-500/10 sm:mx-0">
             <Brain className="size-5.5 text-yellow-500" />
           </div>
 
-          <div className="flex w-full items-center justify-between">
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2">
+          <div className="flex w-full flex-col items-center gap-4 border-0 sm:items-start sm:gap-2 lg:flex-row lg:justify-between lg:gap-8">
+            <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
                 <Badge
                   variant="secondary"
                   className="rounded-sm border border-yellow-400/30 bg-yellow-400/15 p-3 text-yellow-400"
                 >
                   DETECTED
                 </Badge>
-                <span className="text-muted-foreground">
+                <span className="text-sm text-muted-foreground sm:ml-2">
                   último análisis:{" "}
                   {new Date(data.lastAnalysisAt).toLocaleString()}
                 </span>
               </div>
 
-              <p className="text-lg text-white">
+              <p className="mt-2 text-lg text-white sm:mt-0">
                 Se identificaron{" "}
                 <span className="text-yellow-400">
                   {data.anomalies} anomalías
@@ -82,7 +82,7 @@ export default async function Page() {
 
             <Link
               href="/anomalias"
-              className="flex items-center gap-2 font-bold text-yellow-400 transition-all duration-300 hover:text-yellow-400/80"
+              className="mt-4 flex items-center gap-2 font-bold text-yellow-400 transition-all duration-300 hover:text-yellow-400/80 sm:mt-0"
             >
               Ver diagnóstico <ArrowRight className="size-4 text-yellow-400" />
             </Link>

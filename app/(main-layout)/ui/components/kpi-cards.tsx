@@ -81,7 +81,7 @@ export function KpiCards({ data }: DashboardSummaryRes) {
   }, [data])
 
   return (
-    <ul className="flex flex-wrap items-center gap-8">
+    <ul className="flex flex-wrap items-center gap-4 md:gap-8">
       {kpis.map(
         (
           {
@@ -96,10 +96,10 @@ export function KpiCards({ data }: DashboardSummaryRes) {
           },
           index
         ) => (
-          <li key={index}>
+          <li key={index} className="w-full lg:w-[300px]">
             <Card
               className={cn(
-                "min-h-40 w-57.5 rounded-lg border border-accent/90 pt-4 pb-6 transition-all duration-300 hover:scale-105",
+                "min-h-40 rounded-lg border border-accent/90 pt-4 pb-6 transition-all duration-300 hover:scale-105",
                 bgColor
               )}
             >
