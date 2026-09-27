@@ -31,8 +31,8 @@ export default async function Page() {
 
   return (
     <div className="flex flex-col gap-10 p-8">
-      <div className="flex w-full items-center justify-between">
-        <div className="flex flex-col gap-2">
+      <div className="flex w-full flex-col items-center gap-4 md:flex-row md:justify-between">
+        <div className="flex flex-col gap-2 text-center md:text-left">
           <h1 className="text-4xl font-extrabold">Dashboard de Operaciones</h1>
           <p className="text-lg text-muted-foreground">
             Monitoreo y telemetría de eficiencia energética en tiempo real.
@@ -54,8 +54,8 @@ export default async function Page() {
           </div>
 
           <div className="flex w-full flex-col items-center gap-4 border-0 sm:items-start sm:gap-2 lg:flex-row lg:justify-between lg:gap-8">
-            <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <div className="flex flex-col items-center gap-3 text-center sm:items-start sm:text-left">
+              <div className="flex flex-col items-center gap-4 sm:flex-row">
                 <Badge
                   variant="secondary"
                   className="rounded-sm border border-yellow-400/30 bg-yellow-400/15 p-3 text-yellow-400"
@@ -63,7 +63,7 @@ export default async function Page() {
                   DETECTED
                 </Badge>
                 <span className="text-sm text-muted-foreground sm:ml-2">
-                  último análisis:{" "}
+                  Último análisis:{" "}
                   {new Date(data.lastAnalysisAt).toLocaleString()}
                 </span>
               </div>
