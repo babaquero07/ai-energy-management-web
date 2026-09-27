@@ -42,8 +42,8 @@ export default async function MeterPage({ params }: MeterPageProps) {
 
   return (
     <div className="flex flex-col gap-8 p-8">
-      <div className="flex items-center gap-2">
-        <h1 className="text-3xl font-bold">
+      <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-between sm:gap-2">
+        <h1 className="text-center text-3xl font-bold sm:text-left">
           Detalle de medidor - {res.data.name}
         </h1>
         <Badge
@@ -83,7 +83,7 @@ export default async function MeterPage({ params }: MeterPageProps) {
         </Badge>
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col items-center justify-between gap-6 lg:flex-row lg:justify-between">
         <MeterGeneralDetails
           data={{
             location: res.data.location,

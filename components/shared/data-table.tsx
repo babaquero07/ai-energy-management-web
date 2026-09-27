@@ -42,7 +42,7 @@ export function DataTable<TData extends RowData>({
   })
 
   return (
-    <div className="overflow-hidden rounded-md border">
+    <div className="min-w-0 overflow-hidden rounded-md border">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -83,7 +83,7 @@ export function DataTable<TData extends RowData>({
         </TableBody>
       </Table>
 
-      <div className="flex justify-end p-4">
+      <div className="flex justify-end overflow-x-auto p-3 sm:p-4">
         <DataTablePagination table={table} />
       </div>
     </div>

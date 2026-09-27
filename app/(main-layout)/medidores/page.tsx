@@ -55,10 +55,12 @@ export default async function Page({
   }
 
   return (
-    <div className="flex flex-col gap-8 p-8">
+    <div className="flex w-full min-w-0 flex-col gap-6 p-4 sm:gap-8 sm:p-6 lg:p-8">
       <div className="flex flex-col gap-2">
-        <h1 className="text-4xl font-extrabold">Gestión de medidores</h1>
-        <p className="text-lg text-muted-foreground">
+        <h1 className="text-2xl font-extrabold sm:text-3xl lg:text-4xl">
+          Gestión de medidores
+        </h1>
+        <p className="text-base text-muted-foreground sm:text-lg">
           Gestión de medidores y dispositivos conectados.
         </p>
       </div>
@@ -79,7 +81,7 @@ export default async function Page({
               Lista de medidores
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="min-w-0">
             <Suspense
               fallback={
                 <div className="h-16 animate-pulse rounded-lg bg-muted" />

@@ -52,12 +52,12 @@ export function GeneralInfoMeterCards({ data }: GeneralInfoMeterCardsProps) {
   }, [data])
 
   return (
-    <ul className="flex flex-wrap gap-6">
+    <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {cards.map(({ title, value, description, icon: Icon }, index) => (
-        <li key={index}>
+        <li key={index} className="min-w-0">
           <Card
             className={cn(
-              "min-w-55 rounded-lg border border-accent/90 bg-[#0B1120] transition-all duration-300 hover:scale-105"
+              "h-full rounded-lg border border-accent/90 bg-[#0B1120] transition-all duration-300 md:hover:scale-[1.02]"
             )}
           >
             <CardHeader>

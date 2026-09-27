@@ -24,9 +24,9 @@ export function DataTablePagination<TData extends RowData>({
   table,
 }: DataTablePaginationProps<TData>) {
   return (
-    <div className="flex items-center justify-between px-2">
-      <div className="flex items-center space-x-6 lg:space-x-8">
-        <div className="flex items-center space-x-2">
+    <div className="flex w-full flex-col gap-3 px-1 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end sm:gap-x-6 sm:px-2">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 lg:gap-x-8">
+        <div className="flex items-center justify-between gap-2 sm:justify-start">
           <p className="text-sm font-medium">Registros por página</p>
           <Select
             value={`${table.state.pagination.pageSize}`}
@@ -34,7 +34,7 @@ export function DataTablePagination<TData extends RowData>({
               table.setPageSize(Number(value))
             }}
           >
-            <SelectTrigger className="h-8 w-[70px]">
+            <SelectTrigger className="h-8 w-17.5">
               <SelectValue placeholder={table.state.pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top" className="bg-[#0B1120]">
@@ -46,7 +46,7 @@ export function DataTablePagination<TData extends RowData>({
             </SelectContent>
           </Select>
         </div>
-        <div className="flex w-[100px] items-center justify-center text-sm font-medium">
+        <div className="flex items-center justify-between gap-3 text-sm font-medium sm:justify-center">
           Página {table.state.pagination.pageIndex + 1} de{" "}
           {table.getPageCount()}
         </div>

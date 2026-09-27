@@ -78,8 +78,8 @@ export function MetersFilters() {
   }
 
   return (
-    <div className="my-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-      <div className="flex max-w-xs min-w-0 flex-1 flex-col gap-1.5">
+    <div className="my-4 flex flex-col gap-4 sm:my-6 lg:flex-row lg:items-end lg:justify-between">
+      <div className="flex w-full min-w-0 flex-col gap-1.5 lg:max-w-xs lg:flex-1">
         <label htmlFor="meter_id" className="text-sm font-medium">
           Buscar por ID
         </label>
@@ -96,8 +96,8 @@ export function MetersFilters() {
         </div>
       </div>
 
-      <div className="flex items-end gap-3">
-        <div className="flex w-full flex-col gap-1.5 sm:w-48">
+      <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:flex lg:w-auto lg:items-end">
+        <div className="flex w-full flex-col gap-1.5 lg:w-48">
           <label htmlFor="status" className="text-sm font-medium">
             Estado
           </label>
@@ -124,7 +124,7 @@ export function MetersFilters() {
           </Select>
         </div>
 
-        <div className="flex w-full flex-col gap-1.5 sm:w-48">
+        <div className="flex w-full flex-col gap-1.5 lg:w-48">
           <label htmlFor="date" className="text-sm font-medium">
             Fecha creación
           </label>
@@ -134,7 +134,7 @@ export function MetersFilters() {
                 <Button
                   variant={"outline"}
                   data-empty={!dateParam}
-                  className="w-45 justify-between text-left font-normal data-[empty=true]:text-muted-foreground"
+                  className="w-full justify-between text-left font-normal data-[empty=true]:text-muted-foreground lg:w-45"
                 >
                   {" "}
                   {dateParam ? (
@@ -170,7 +170,7 @@ export function MetersFilters() {
 
         <Button
           size="sm"
-          className="cursor-pointer rounded-lg bg-white px-4 py-4 text-black hover:bg-white/90"
+          className="w-full cursor-pointer rounded-lg bg-white px-4 py-4 text-black hover:bg-white/90 sm:col-span-2 lg:w-auto"
           onClick={() => {
             router.replace(pathname)
           }}

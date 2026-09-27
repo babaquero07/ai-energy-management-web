@@ -50,7 +50,7 @@ export function MeterGeneralDetails({ data }: MeterGeneralDetailsProps) {
   )
 
   return (
-    <ul className="flex items-center gap-3">
+    <ul className="flex flex-col items-center gap-3 lg:flex-row lg:justify-center">
       {items.map(({ icon: Icon, label, value }, index) => (
         <li key={index} className="flex items-center gap-2">
           <Icon className="size-4 text-violet-200" />
