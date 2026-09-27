@@ -89,7 +89,17 @@ export default function AnomalyDetail({ anomaly_id }: AnomalyDetailProps) {
       if (data.success) {
         toast.add({
           type: "success",
-          title: "Anomalía actualizada",
+          title: "Análisis con IA completado",
+          description: "La anomalía ha sido analizada con éxito.",
+          timeout: 5000,
+        })
+      } else {
+        toast.add({
+          type: "error",
+          title: "Error al analizar los datos con IA",
+          description:
+            "Inténtalo de nuevo. Si el problema persiste, contacta al soporte.",
+          timeout: 5000,
         })
       }
     },
@@ -103,7 +113,7 @@ export default function AnomalyDetail({ anomaly_id }: AnomalyDetailProps) {
 
       toast.add({
         type: "error",
-        title: "Error al actualizar la anomalía",
+        title: "Error al analizar los datos con IA",
         description:
           "Inténtalo de nuevo. Si el problema persiste, contacta al soporte.",
         timeout: 5000,

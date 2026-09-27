@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button"
 import { useMutation } from "@tanstack/react-query"
-import { cn } from "@/lib/utils"
 import { Loader2, Sparkles } from "lucide-react"
 import { toast } from "@/components/ui/toast"
 import { Anomaly } from "@/app/(main-layout)/anomalias/types/anomalies-types.type"
@@ -74,16 +73,14 @@ export function AnalyzeMeter({ meter_id }: AnalyzeMeterProps) {
       size="lg"
       onClick={() => analyzeDataMutation.mutate(meter_id)}
       disabled={analyzeDataMutation.isPending}
-      className="min-w-62.5 cursor-pointer border-none bg-[#10B981] text-lg text-white transition-all duration-300 hover:scale-105 hover:bg-emerald-500"
+      className="min-w-52.5 cursor-pointer border-none bg-[#10B981] text-lg text-white transition-all duration-300 hover:scale-105 hover:bg-emerald-500"
     >
       {analyzeDataMutation.isPending ? (
         <Loader2 className="size-4 animate-spin text-white" />
       ) : (
         <Sparkles className="size-5" />
       )}
-      {analyzeDataMutation.isPending
-        ? "Analizando..."
-        : "Analizar datos con IA"}
+      {analyzeDataMutation.isPending ? "Analizando..." : "Analizar datos"}
     </Button>
   )
 }
