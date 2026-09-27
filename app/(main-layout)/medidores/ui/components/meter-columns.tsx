@@ -13,7 +13,7 @@ import {
   DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
-import { MoreHorizontal } from "lucide-react"
+import { Eye, MoreHorizontal } from "lucide-react"
 import Link from "next/link"
 
 // Use `accessor` for data columns and `display` for columns without one.
@@ -63,18 +63,15 @@ export const meterColumns = columnHelper.columns([
           <DropdownMenuContent align="end" className="w-45 bg-[#0B1120]">
             <DropdownMenuGroup>
               <DropdownMenuLabel>Acciones</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() =>
-                  navigator.clipboard.writeText(meter.meter_id.toString())
-                }
-              >
-                Copiar ID del medidor
-              </DropdownMenuItem>
               <DropdownMenuSeparator />
-              {/* <DropdownMenuItem>View customer</DropdownMenuItem> */}
-              <DropdownMenuItem>
-                <Link href={`/medidores/${meter.meter_id}`}>Ver detalles</Link>
-              </DropdownMenuItem>
+              <Link
+                className="flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1 text-sm hover:bg-gray-600"
+                href={`/medidores/${meter.meter_id}`}
+              >
+                {" "}
+                <Eye className="size-4" />
+                Ver detalles
+              </Link>
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
