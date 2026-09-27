@@ -13,6 +13,8 @@ export const metadata: Metadata = {
     "Monitoreo y telemetría de eficiencia energética en tiempo real.",
 }
 
+export const dynamic = "force-dynamic"
+
 export default async function Page() {
   const API_URL = process.env.API_URL
 
