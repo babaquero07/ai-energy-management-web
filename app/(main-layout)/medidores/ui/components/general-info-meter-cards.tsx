@@ -1,13 +1,6 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { cn } from "cn"
-import {
-  CircleX,
-  Gauge,
-  LucideIcon,
-  Radio,
-  RadioOff,
-  WrenchIcon,
-} from "lucide-react"
+import { Gauge, LucideIcon, Radio, RadioOff, WrenchIcon } from "lucide-react"
 import { useMemo } from "react"
 
 interface GeneralInfoMeterCardsProps {

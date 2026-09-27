@@ -46,7 +46,7 @@ export function MeterGeneralDetails({ data }: MeterGeneralDetailsProps) {
         }),
       },
     ],
-    [location]
+    [location, created_at, last_reading_date]
   )
 
   return (

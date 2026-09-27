@@ -2,12 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import {
-  CalendarIcon,
-  ChevronDownIcon,
-  FilterXIcon,
-  Search,
-} from "lucide-react"
+import { ChevronDownIcon, FilterXIcon, Search } from "lucide-react"
 
 import { Input } from "@/components/ui/input"
 import {

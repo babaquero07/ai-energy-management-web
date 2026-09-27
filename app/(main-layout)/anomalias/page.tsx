@@ -18,7 +18,7 @@ export default async function AnomaliesPage() {
 
   const res: AnomaliesResponse | null = await fetch(`${API_URL}/anomalies`)
     .then((res) => res.json())
-    .catch((err) => null)
+    .catch((err) => console.error(err))
 
   if (res?.data.length === 0) {
     return <EmptyAnomalies />

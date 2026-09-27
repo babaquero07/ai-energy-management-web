@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Brain, Gauge, RefreshCw } from "lucide-react"
+import { ArrowRight, Brain, RefreshCw } from "lucide-react"
 import { DashboardSummaryRes } from "./types/dashboard.types"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { KpiCards } from "./ui/components/kpi-cards"
@@ -41,7 +41,7 @@ export default async function Page() {
           size="lg"
           className="cursor-pointer rounded-lg bg-white px-4 text-black hover:bg-white/90"
         >
-          <RefreshCw className="size-4" /> <a href="/">Actualizar</a>
+          <RefreshCw className="size-4" /> <Link href="/">Actualizar</Link>
         </Button>
       </div>
 

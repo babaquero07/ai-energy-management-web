@@ -83,7 +83,7 @@ export function MeterDetailsCards({ data }: MeterDetailsCardsProps) {
         ),
       },
     ],
-    [consumption, voltage, current, powerFactor]
+    [consumption, voltage, current, powerFactor, baseline, variation_percentage]
   )
 
   return (

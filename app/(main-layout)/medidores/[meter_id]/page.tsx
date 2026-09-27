@@ -8,7 +8,6 @@ import { MeterDetailsCards } from "./ui/components/meter-details-cards"
 import { DataTable } from "@/components/shared/data-table"
 import { meterDetailColumns } from "./ui/components/meter-detail-columns"
 import { MeterDemandChart } from "./ui/components/meter-demand-chart"
-import { Card, CardHeader } from "@/components/ui/card"
 import { FileText } from "lucide-react"
 import { AnalyzeMeter } from "./ui/components/analize-meter"
 

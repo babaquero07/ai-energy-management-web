@@ -18,7 +18,7 @@ Panel web para monitorear medidores de energía, revisar telemetría y gestionar
 | Fechas | date-fns + react-day-picker | Filtro de fecha y ejes de gráficas |
 | Tema | next-themes | Tema oscuro por defecto (`class` en `<html>`) |
 | Fuentes | Geist y Geist Mono (`next/font`) | Tipografía del layout raíz |
-| Calidad | ESLint 10 (`eslint-config-next`) y Prettier 3 | Lint y formato |
+| Calidad | ESLint 9 (`eslint-config-next`) y Prettier 3 | Lint y formato |
 
 Gestor de paquetes: **pnpm** (`pnpm-lock.yaml`). El alias `@/*` apunta a la raíz del repositorio (`tsconfig.json`).
 
